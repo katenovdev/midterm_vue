@@ -1,8 +1,17 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import GetJobComponent from "../components/landing/GetJobComponent.vue";
+import VacanciesComponent from "../components/landing/VacanciesComponent.vue";
+import About from "../components/landing/About.vue";
+import Footer from "../components/Footer.vue";
+</script>
 
 <template>
-    LANDING WILL BE HERE
+  LANDING WILL BE HERE
+
+  <GetJobComponent />
+  <VacanciesComponent />
+  <About />
+  <Footer />
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
