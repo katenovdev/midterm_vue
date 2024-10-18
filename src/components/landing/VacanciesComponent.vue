@@ -1,57 +1,52 @@
-<script>
-export default {
-  name: 'VacanciesComponent',
-  computed: {
-    visibleVacancies() {
-      return this.showAll ? this.categories : this.categories.slice(0, this.initialVisibleCount);
-    },
-    remainingVacancies() {
-      // Вычисляем сколько вакансий осталось показать
-      return this.categories.length - this.initialVisibleCount;
-    }
-  },
-  methods: {
-    showMore() {
-      // При клике на кнопку показываем все вакансии
-      this.showAll = true;
-    }
-  },
-  data() {
-    return {
-      initialVisibleCount: 12,
-      categories: [
-        {title: 'Вакансия дня', salary: '180 000 – 799 900 ₸', count: 14},
-        {title: 'Компания дня', salary: '', count: 281},
-        {title: 'Работа из дома', salary: '', count: 1449},
-        {title: 'Подработка', salary: '100 – 979 300 ₸', count: 1528},
-        {title: 'Курьер', salary: '4 900 – 869 900 ₸', count: 486},
-        {title: 'Водитель', salary: '4 900 – 1003 300 ₸', count: 775},
-        {title: 'Продавец', salary: '100 – 666 700 ₸', count: 957},
-        {title: 'Кассир', salary: '5 900 – 500 900 ₸', count: 639},
-        {title: 'Администратор', salary: '100 – 666 600 ₸', count: 967},
-        {title: 'Оператор', salary: '200 – 866 700 ₸', count: 1062},
-        {title: 'Программист', salary: '9 900 – 1 433 300 ₸', count: 1199},
-        {title: 'Менеджер', salary: '100 – 1 500 000 ₸', count: 5782}
-        // Можете добавить ещё больше вакансий
-      ],
-      showAll: false,
-      colors: [
-        '#ff6347', '#ffa500', '#f08080', '#f4a460', '#32cd32',
-        '#4682b4', '#dda0dd', '#9370db', '#ff69b4', '#ff4500',
-        '#db7093'
-      ],
-      companies: [
-        {name: 'Детский мир Казахстан', count: 42},
-        {name: 'Международная беттинг компания Parimatch', count: 3},
-        // ... другие компании
-      ],
-      vacancies: [
-        {id: 1, position: 'Электронщик', company: 'Филип Моррис Казахстан', salary: 'от 650 до 1350 $'},
-        {id: 2, position: 'Водитель курьер', company: 'Яндекс.Доставка', salary: 'от 500000 до 1500000 ₸'},
-        // ... другие вакансии
-      ]
-    };
-  }
+<script setup>
+import { ref, computed } from 'vue';
+import {useRouter} from 'vue-router'
+import vacanciesData from "../data.json"
+
+const router = useRouter();
+
+const initialVisibleCount = ref(12);
+const showAll = ref(false);
+
+const vacancies = ref(vacanciesData);
+
+const categories = ref([
+  { title: 'Вакансия дня', salary: '180 000 – 799 900 ₸', count: 14 },
+  { title: 'Компания дня', salary: '', count: 281 },
+  { title: 'Работа из дома', salary: '', count: 1449 },
+  { title: 'Подработка', salary: '100 – 979 300 ₸', count: 1528 },
+  { title: 'Курьер', salary: '4 900 – 869 900 ₸', count: 486 },
+  { title: 'Водитель', salary: '4 900 – 1003 300 ₸', count: 775 },
+  { title: 'Продавец', salary: '100 – 666 700 ₸', count: 957 },
+  { title: 'Кассир', salary: '5 900 – 500 900 ₸', count: 639 },
+  { title: 'Администратор', salary: '100 – 666 600 ₸', count: 967 },
+  { title: 'Оператор', salary: '200 – 866 700 ₸', count: 1062 },
+  { title: 'Программист', salary: '9 900 – 1 433 300 ₸', count: 1199 },
+  { title: 'Менеджер', salary: '100 – 1 500 000 ₸', count: 5782 }
+]);
+
+const colors = ref([
+  '#ff6347', '#ffa500', '#f08080', '#f4a460', '#32cd32',
+  '#4682b4', '#dda0dd', '#9370db', '#ff69b4', '#ff4500',
+  '#db7093'
+]);
+
+const companies = ref([
+  { name: 'Детский мир Казахстан', count: 42 },
+  { name: 'Международная беттинг компания Parimatch', count: 3 }
+  // ... другие компании
+]);
+
+const visibleVacancies = computed(() => {
+  return showAll.value ? categories.value : categories.value.slice(0, initialVisibleCount.value);
+});
+
+const remainingVacancies = computed(() => {
+  return categories.value.length - initialVisibleCount.value;
+});
+
+const showMore = () => {
+  showAll.value = true;
 };
 </script>
 
@@ -91,7 +86,8 @@ export default {
         <div class="block-spacing"></div>
         <div class="vacancies-container">
           <div class="vacancy" v-for="vacancy in vacancies" :key="vacancy.id">
-            <h3>{{ vacancy.position }}</h3>
+            <h3 class="vacancy-title"
+            @click="router.push(`/vacancy/${vacancy.id}`)">{{ vacancy.position }}</h3>
             <p>{{ vacancy.salary }}</p>
             <p>{{ vacancy.company }}</p>
           </div>
@@ -267,5 +263,9 @@ export default {
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
   width: fit-content;
+}
+
+.vacancy-title {
+  cursor: pointer;
 }
 </style>
