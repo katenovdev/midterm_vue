@@ -24,7 +24,6 @@ onMounted(() => {
     router.push("/resumes");
   }
 
-  // Запуск таймера
   timer = setInterval(() => {
     if (time.value > 0) {
       time.value--;
@@ -44,10 +43,53 @@ const sendVerifyEmail = () => {
   step.value = 2;
 };
 
+const resumes = [
+  {
+    id: "1",
+    position: "Frontend Developer",
+    createdAt: "2024-10-10",
+    show: 150,
+    views: 100,
+    applies: 10,
+  },
+  {
+    id: "2",
+    position: "Backend Developer",
+    createdAt: "2024-09-25",
+    show: 200,
+    views: 120,
+    applies: 15,
+  },
+  {
+    id: "3",
+    position: "UX/UI Designer",
+    createdAt: "2024-08-30",
+    show: 180,
+    views: 110,
+    applies: 20,
+  },
+  {
+    id: "4",
+    position: "Data Scientist",
+    createdAt: "2024-10-05",
+    show: 210,
+    views: 150,
+    applies: 25,
+  },
+  {
+    id: "5",
+    position: "Project Manager",
+    createdAt: "2024-09-15",
+    show: 170,
+    views: 130,
+    applies: 18,
+  },
+];
+
 const verifyCodeFunc = () => {
   if (code.value == 1) {
     // логика для сохранения юзера в стор,
-    store.commit("increment");
+    store.commit("setResumes", { resumes: resumes, name: "Томас" });
     router.push("/personal-cabinet");
   }
 };
@@ -60,7 +102,6 @@ const verifyCodeFunc = () => {
       <form @submit.prevent="sendVerifyEmail">
         <input class="input" placeholder="Введите email" v-model="email" />
         <button class="button button-primary">Продолжить</button>
-        {{ count }}
       </form>
     </div>
 

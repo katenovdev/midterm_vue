@@ -6,8 +6,6 @@ import Footer from "../components/Footer.vue";
 </script>
 
 <template>
-  LANDING WILL BE HERE
-
   <GetJobComponent />
   <VacanciesComponent />
   <About />
