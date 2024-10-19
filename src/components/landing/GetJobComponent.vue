@@ -1,5 +1,11 @@
 <script setup lang="ts">
-import backgroundImage from '@/assets/background.jpg';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
+
+const goToAuth = () => {
+  router.push('/auth')
+}
 </script>
 
 <template>
@@ -11,7 +17,7 @@ import backgroundImage from '@/assets/background.jpg';
         </div>
       </div>
       <div class="outer2-container">
-        <button class="login-btn">Войти</button>
+        <button @click="goToAuth" class="login-btn">Войти</button>
       </div>
     </header>
 
@@ -87,6 +93,7 @@ import backgroundImage from '@/assets/background.jpg';
 
 .logo img {
   height: 50px;
+  width: 100%;
 }
 
 .login-btn {
@@ -182,7 +189,7 @@ import backgroundImage from '@/assets/background.jpg';
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding: 20px;
+  /* padding: 20px; */
   color: #fff;
 }
 

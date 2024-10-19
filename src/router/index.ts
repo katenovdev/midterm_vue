@@ -2,7 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/landing",
+    path: "/",
     name: "landing",
     component: () => import("../pages/landing.vue"),
   },
