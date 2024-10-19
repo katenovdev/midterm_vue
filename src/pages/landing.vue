@@ -8,6 +8,7 @@ import Footer from "../components/Footer.vue";
 <template>
   <GetJobComponent />
   <VacanciesComponent />
+  <hr />
   <About />
   <Footer />
 </template>
