@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, onUnmounted } from "vue";
 import { useRouter } from "vue-router";
 
 const step = ref(1);
@@ -10,14 +10,43 @@ const router = useRouter();
 
 const isAuth = ref(false);
 
-const min = ref(60);
+const min = computed(() => Math.floor(time.value / 60));
 const sec = computed(() => time.value % 60);
+
+let timer: number | null = null;
 
 onMounted(() => {
   if (isAuth.value) {
     router.push("/resumes");
   }
+
+  // Запуск таймера
+  timer = setInterval(() => {
+    if (time.value > 0) {
+      time.value--;
+    } else {
+      clearInterval(timer!);
+    }
+  }, 1000);
 });
+
+onUnmounted(() => {
+  if (timer) {
+    clearInterval(timer);
+  }
+});
+
+const sendVerifyEmail = () => {
+  step.value = 2;
+};
+
+const verifyCodeFunc = () => {
+  if (code.value == 1) {
+    // логика для сохранения юзера в стор,
+
+    router.push('/personal-cabinet');
+  }
+};
 </script>
 
 <template>
@@ -33,7 +62,7 @@ onMounted(() => {
     <div v-if="step === 1" class="card">
       <h1>Поиск сотрудников</h1>
       <p>Размещение вакансий и доступ к базе резюме</p>
-      <router-link class="button button-primary-bordered" to="/employer/signin">
+      <router-link class="button button-primary-bordered" to="/auth/emp">
         Я ищу сотрудников
       </router-link>
     </div>
@@ -46,7 +75,13 @@ onMounted(() => {
         <p>
           Повторить можно через {{ min }}:{{ sec < 10 ? "0" : "" }}{{ sec }}
         </p>
-        <button class="button button-primary" type="button">Продолжить</button>
+        <button
+          class="button button-primary"
+          type="button"
+          @click="verifyCodeFunc"
+        >
+          Продолжить
+        </button>
         <button
           class="button button-primary-bordered"
           @click="step = 1"
