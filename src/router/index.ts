@@ -21,6 +21,11 @@ const routes: Array<RouteRecordRaw> = [
     name: "authEmployer",
     component: () => import("../pages/signemp.vue"),
   },
+  {
+    path: "/personal-cabinet",
+    name: "personal-cabinet",
+    component: () => import("../pages/personal-cabinet.vue"),
+  },
 ];
 
 const router = createRouter({
