@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "name": "Филип Моррис Казахстан",
+    "description": "Good",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/640px-Google_2015_logo.svg.png",
+    "city": "Almaty"
+  },
+  {
+    "id": 2,
+    "name": "Яндекс.Доставка",
+    "description": "Good"
+  },
+  {
+    "id": 3,
+    "name": "Детский мир Казахстан",
+    "count": 42
+  },
+  {
+    "id": 4,
+    "name": "Международная беттинг компания Parimatch",
+    "count": 3
+  }
+]
