@@ -36,7 +36,8 @@ const goToResume = () => {
       <a class="p3">{{ item.views }} просмотров</a>
       <a class="p3">{{ item.applies }} приглашений</a>
     </div>
-    <span class="deleteReume" @click="deleteResume">Удалить</span>
+    <slot></slot>
+    <!-- <span class="deleteReume" @click="deleteResume">Удалить</span> -->
   </div>
 </template>
 

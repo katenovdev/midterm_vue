@@ -31,7 +31,28 @@ onMounted(() => {
       </div>
 
       <div v-for="resume in resumes">
-        <Resume :item="resume" />
+        <Resume :item="resume">
+          <div v-if="resume.id === '1'">
+            <button class="button button-primary">
+              Редактировать Frontend
+            </button>
+          </div>
+          <div v-else-if="resume.id === '2'">
+            <button class="button button-secondary-bordered">
+              Удалить Backend
+            </button>
+          </div>
+          <div v-else-if="resume.id === '3'">
+            <button class="button button-danger">
+              Просмотреть UX/UI
+            </button>
+          </div>
+          <div v-else>
+            <button class="button button-default">
+              Другое
+            </button>
+          </div>
+        </Resume>
       </div>
     </div>
   </main>
