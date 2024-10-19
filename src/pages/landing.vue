@@ -10,7 +10,7 @@ import Footer from "../components/Footer.vue";
   <VacanciesComponent />
   <hr />
   <About />
-  <Footer />
+  <!-- <Footer /> -->
 </template>
 
 <style scoped></style>

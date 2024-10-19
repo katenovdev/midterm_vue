@@ -114,7 +114,7 @@ const verifyCodeFunc = () => {
     </div>
 
     <div v-if="step === 2" class="card">
-      <h1>Отправили код на ....</h1>
+      <h1>Отправили код на {{ email ? email : "...." }}</h1>
       <p>Напишите его что подтвердить что это вы, а не кто-то другой</p>
       <form @submit.prevent="verifyCodeFunc">
         <input class="input" placeholder="Введите код" v-model="code" />

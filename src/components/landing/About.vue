@@ -202,6 +202,7 @@
         grid-template-rows: auto auto auto;
         gap: 10px;
         background-color: 0;
+        margin-bottom: 50px !important;
     }
 
     .element-1 {
