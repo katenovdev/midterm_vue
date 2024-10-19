@@ -11,6 +11,6 @@ import Header from "@/components/Header.vue";
 
 <style scoped>
 .mainapp {
-  padding: 10px 3rem;
+  /* padding: 10px 3rem; */
 }
 </style>

@@ -11,6 +11,11 @@ const routes: Array<RouteRecordRaw> = [
     name: "auth",
     component: () => import("../pages/signIn.vue"),
   },
+  {
+    path: "/auth/emp",
+    name: "authEmployer",
+    component: () => import("../pages/signemp.vue"),
+  },
 ];
 
 const router = createRouter({
