@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from "vue";
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 
 const step = ref(1);
 const email = ref("");
 const code = ref("");
 const time = ref(119);
 const router = useRouter();
+const store = useStore();
+
+const count = computed(() => store.state.count);
 
 const isAuth = ref(false);
 
@@ -43,8 +47,8 @@ const sendVerifyEmail = () => {
 const verifyCodeFunc = () => {
   if (code.value == 1) {
     // логика для сохранения юзера в стор,
-
-    router.push('/personal-cabinet');
+    store.commit("increment");
+    router.push("/personal-cabinet");
   }
 };
 </script>
@@ -56,6 +60,7 @@ const verifyCodeFunc = () => {
       <form @submit.prevent="sendVerifyEmail">
         <input class="input" placeholder="Введите email" v-model="email" />
         <button class="button button-primary">Продолжить</button>
+        {{ count }}
       </form>
     </div>
 
