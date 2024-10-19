@@ -15,7 +15,12 @@ const routes: Array<RouteRecordRaw> = [
     path: "/vacancy/:id",
     name: "vacancy",
     component: () => import("../components/landing/VacancyView.vue"),
-  }
+  },
+  {
+    path: "/auth/emp",
+    name: "authEmployer",
+    component: () => import("../pages/signemp.vue"),
+  },
 ];
 
 const router = createRouter({
