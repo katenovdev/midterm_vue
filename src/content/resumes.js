@@ -1,0 +1,42 @@
+export const resumes = [
+    {
+        id: "1",
+        position: "Frontend Developer",
+        createdAt: "2024-10-10",
+        show: 150,
+        views: 100,
+        applies: 10,
+    },
+    {
+        id: "2",
+        position: "Backend Developer",
+        createdAt: "2024-09-25",
+        show: 200,
+        views: 120,
+        applies: 15,
+    },
+    {
+        id: "3",
+        position: "UX/UI Designer",
+        createdAt: "2024-08-30",
+        show: 180,
+        views: 110,
+        applies: 20,
+    },
+    {
+        id: "4",
+        position: "Data Scientist",
+        createdAt: "2024-10-05",
+        show: 210,
+        views: 150,
+        applies: 25,
+    },
+    {
+        id: "5",
+        position: "Project Manager",
+        createdAt: "2024-09-15",
+        show: 170,
+        views: 130,
+        applies: 18,
+    },
+];
